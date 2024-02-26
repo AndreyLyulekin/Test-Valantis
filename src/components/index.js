@@ -2,7 +2,7 @@ import App from "./App/App";
 import Main from "./Main/Main";
 import Header from "./Header/Header";
 import Loader from "./Loader/Loader";
-import { apiUrl, password } from "../utils/consts";
+import { API_URL, PASSWORD_API } from "../utils/consts";
 import Pagination from "./Pagination/Pagination";
 import ClearFormButton from "./ClearFormButton/ClearFormButton";
 import {
@@ -11,7 +11,7 @@ import {
   getProducts,
   getAllBrands,
   getFilteredProducts,
-} from "../Api/Valantis.-Store";
+} from "../api/Valantis-Store";
 import {
   fetchIds,
   fetchProducts,
@@ -27,8 +27,8 @@ export {
   Header,
   Pagination,
   Loader,
-  apiUrl,
-  password,
+  API_URL,
+  PASSWORD_API,
   getFiftyIds,
   getFields,
   getProducts,

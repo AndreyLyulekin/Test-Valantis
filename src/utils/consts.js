@@ -1,2 +1,2 @@
-export const apiUrl = "https://api.valantis.store:41000/";
-export const password = "Valantis";
+export const API_URL = "https://api.valantis.store:41000/";
+export const PASSWORD_API = "Valantis";

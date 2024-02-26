@@ -1,12 +1,12 @@
 import axios from "axios";
 import md5 from "blueimp-md5";
-import { apiUrl, password } from "../utils/consts";
+import { API_URL, PASSWORD_API } from "../utils/consts";
 
 // Текущая дата
 const timestamp = new Date().toISOString().split("T")[0].replace(/-/g, "");
 
 // Формирование авторизационной строки
-const authString = md5(`${password}_${timestamp}`);
+const authString = md5(`${PASSWORD_API}_${timestamp}`);
 
 // Выполнение запроса к API
 export const getAllBrands = async () => {
@@ -19,7 +19,7 @@ export const getAllBrands = async () => {
   while (retry && retryCount < 3) {
     try {
       const response = await axios.post(
-        apiUrl,
+        API_URL,
         {
           action: "get_fields",
           params: { field: "brand" },
@@ -64,7 +64,7 @@ export const getFields = async () => {
   while (retry && retryCount < 3) {
     try {
       const response = await axios.post(
-        apiUrl,
+        API_URL,
         {
           action: "get_fields",
         },
@@ -113,7 +113,7 @@ export const getFiftyIds = async (page, rowsPerPage) => {
   while (retry && retryCount < 3) {
     try {
       const response = await axios.post(
-        apiUrl,
+        API_URL,
         {
           action: "get_ids",
           params: { offset, limit: rowsPerPage + extraRows },
@@ -168,7 +168,7 @@ export const getProducts = async (page, rowsPerPage, idsAfterFilter) => {
   while (retry && retryCount < 3) {
     try {
       const response = await axios.post(
-        apiUrl,
+        API_URL,
         {
           action: "get_items",
           params: { ids: ids },
@@ -217,7 +217,7 @@ export const getFilteredProducts = async (filteredBy, filterValue) => {
   while (retry && retryCount < 3) {
     try {
       const response = await axios.post(
-        apiUrl,
+        API_URL,
         {
           action: "filter",
           params,
