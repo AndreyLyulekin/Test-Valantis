@@ -1,4 +1,4 @@
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useState, useEffect } from "react";
 import {
@@ -9,18 +9,13 @@ import {
   Loader,
   fetchBrands,
   fetchFilteredProducts,
+  darkTheme,
 } from "../index";
-
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
 
 export default function App() {
   const [allBrandsLists, setAllBrandsLists] = useState([]);
   const [isFieldBrandsChosen, setIsFieldBrandsChosen] = useState(false);
-  const [currentPage, setcurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(50);
   const [tableColumnsNames, setTableColumnsNames] = useState([]);
   const [products, setProducts] = useState([]);
@@ -85,10 +80,12 @@ export default function App() {
         <Header
           filterBy={filterBy}
           allBrandsLists={allBrandsLists}
-          filterSearchInputValue={filterSearchInputValue}
+          filterSearchInputValueAllState={{
+            filterSearchInputValue,
+            setFilterSearchInputValue,
+          }}
           filterChange={filterChange}
           handleChangeChooseBrand={handleChangeChooseBrand}
-          setFilterSearchInputValue={setFilterSearchInputValue}
           handleClearFilterCLick={handleClearFilterCLick}
         />
         {isLoading ? (
@@ -96,7 +93,7 @@ export default function App() {
         ) : (
           <Main
             productsIdsAfterFilter={productsIdsAfterFilter}
-            pagesAllState={{ currentPage, setcurrentPage }}
+            pagesAllState={{ currentPage, setCurrentPage }}
             rowsAllState={{ rowsPerPage, setRowsPerPage }}
             tableColumnsNames={tableColumnsNames}
             products={products}

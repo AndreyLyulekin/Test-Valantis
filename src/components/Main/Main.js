@@ -1,12 +1,13 @@
 import { Pagination } from "../index";
 
-export default function Main({
-  pagesAllState,
-  rowsAllState,
-  tableColumnsNames,
-  products,
-  productsIdsAfterFilter,
-}) {
+export default function Main(props) {
+  const {
+    pagesAllState,
+    rowsAllState,
+    tableColumnsNames,
+    products,
+    productsIdsAfterFilter,
+  } = props;
   return (
     <main className="flex flex-col items-center w-full py-[30px]">
       <Pagination

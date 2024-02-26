@@ -4,6 +4,7 @@ import Header from "./Header/Header";
 import Loader from "./Loader/Loader";
 import { apiUrl, password } from "../utils/consts";
 import Pagination from "./Pagination/Pagination";
+import ClearFormButton from "./ClearFormButton/ClearFormButton";
 import {
   getFiftyIds,
   getFields,
@@ -17,6 +18,7 @@ import {
   fetchTableColumns,
   fetchBrands,
   fetchFilteredProducts,
+  darkTheme,
 } from "../utils/helpers";
 
 export {
@@ -30,6 +32,7 @@ export {
   getFiftyIds,
   getFields,
   getProducts,
+  darkTheme,
   fetchIds,
   fetchProducts,
   fetchTableColumns,
@@ -37,4 +40,5 @@ export {
   fetchBrands,
   getFilteredProducts,
   fetchFilteredProducts,
+  ClearFormButton,
 };

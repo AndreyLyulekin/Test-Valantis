@@ -5,6 +5,13 @@ import {
   getProducts,
   getFilteredProducts,
 } from "../components/index";
+import { createTheme } from "@mui/material/styles";
+
+export const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 export const fetchBrands = async (setter) => {
   const response = await getAllBrands();

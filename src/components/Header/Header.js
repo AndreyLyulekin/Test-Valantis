@@ -8,19 +8,20 @@ import {
   Button,
   Stack,
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import TuneIcon from "@mui/icons-material/Tune";
 import { useState } from "react";
 
-export default function BasicTextFields({
-  allBrandsLists,
-  filterBy,
-  filterSearchInputValue,
-  filterChange,
-  handleChangeChooseBrand,
-  setFilterSearchInputValue,
-  handleClearFilterCLick,
-}) {
+import { ClearFormButton } from "../index";
+
+export default function BasicTextFields(props) {
+  const {
+    allBrandsLists,
+    filterBy,
+    filterChange,
+    handleChangeChooseBrand,
+    handleClearFilterCLick,
+    filterSearchInputValueAllState,
+  } = props;
   const [textField, setTextField] = useState("");
 
   const handleChange = (e) => {
@@ -38,14 +39,16 @@ export default function BasicTextFields({
     let input = textField;
 
     !isNaN(input)
-      ? setFilterSearchInputValue(parseInt(input))
-      : setFilterSearchInputValue(input);
+      ? filterSearchInputValueAllState.setFilterSearchInputValue(
+          parseInt(input),
+        )
+      : filterSearchInputValueAllState.setFilterSearchInputValue(input);
   };
 
   return (
     <header className="flex pt-4 lg:pt-0 gap-y-3 lg:gap-0 flex-col lg:flex-row w-full items-center justify-between lg:h-[100px]">
       <h2 className="font-bold text-2xl select-none">LoGo</h2>
-      <div className="flex  gap-y-3 lg:gap-0 flex-col lg:flex-row items-center gap-x-5">
+      <div className="flex gap-y-3 flex-col lg:flex-row items-center lg:gap-x-5">
         <Box sx={{ minWidth: 160 }}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">
@@ -87,20 +90,14 @@ export default function BasicTextFields({
               <Button
                 variant="contained"
                 endIcon={<TuneIcon />}
-                onClick={handleSubmit}
+                onClick={(e) => handleSubmit(e)}
                 size="large"
               >
                 Filter
               </Button>
-              <Button
-                size="large"
-                variant="outlined"
-                color="error"
-                startIcon={<DeleteIcon />}
-                onClick={handleClearFilterCLick}
-              >
-                Clear filter
-              </Button>
+              <ClearFormButton
+                handleClearFilterCLick={handleClearFilterCLick}
+              />
             </Stack>
           </>
         )}
@@ -127,46 +124,47 @@ export default function BasicTextFields({
               <Button
                 variant="contained"
                 endIcon={<TuneIcon />}
-                onClick={handleSubmit}
+                onClick={(e) => handleSubmit(e)}
                 size="large"
               >
                 Filter
               </Button>
-              <Button
-                size="large"
-                variant="outlined"
-                color="error"
-                startIcon={<DeleteIcon />}
-                onClick={handleClearFilterCLick}
-              >
-                Clear filter
-              </Button>
+              <ClearFormButton
+                handleClearFilterCLick={handleClearFilterCLick}
+              />
             </Stack>
           </>
         )}
         {filterBy === "brand" && (
-          <Box sx={{ minWidth: "370px" }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">
-                Choose Brand
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={filterSearchInputValue}
-                label="Filtered by..."
-                onChange={handleChangeChooseBrand}
-              >
-                {allBrandsLists.map((brand, index) => {
-                  return (
-                    <MenuItem key={index} value={brand}>
-                      {brand}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </FormControl>
-          </Box>
+          <>
+            <Box sx={{ minWidth: "370px" }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Choose Brand
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={filterSearchInputValueAllState.filterSearchInputValue}
+                  label="Filtered by..."
+                  onChange={handleChangeChooseBrand}
+                >
+                  {allBrandsLists.map((brand, index) => {
+                    return (
+                      <MenuItem key={index} value={brand}>
+                        {brand}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </Box>
+            <Stack direction="row" spacing={2}>
+              <ClearFormButton
+                handleClearFilterCLick={handleClearFilterCLick}
+              />
+            </Stack>
+          </>
         )}
       </div>
     </header>

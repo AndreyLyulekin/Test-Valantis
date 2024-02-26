@@ -9,12 +9,12 @@ export default function Pagination({
     productsIdsAfterFilter.length > 0 ? productsIdsAfterFilter.length : -1;
 
   const handleChangePage = (event, newPage) => {
-    pagesAllState.setcurrentPage(newPage);
+    pagesAllState.setCurrentPage(newPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
     rowsAllState.setRowsPerPage(parseInt(event.target.value, 10));
-    pagesAllState.setcurrentPage(0);
+    pagesAllState.setCurrentPage(0);
   };
 
   return (
