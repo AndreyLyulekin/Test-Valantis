@@ -5,6 +5,9 @@ import Loader from "./Loader/Loader";
 import { API_URL, PASSWORD_API } from "../utils/consts";
 import Pagination from "./Pagination/Pagination";
 import ClearFormButton from "./ClearFormButton/ClearFormButton";
+import FilterByProduct from "./FilterByProduct/FilterByProduct";
+import FilterByPrice from "./FilterByPrice/FilterByPrice";
+import FilterByBrand from "./FilterByBrand/FilterByBrand";
 import {
   getFiftyIds,
   getFields,
@@ -41,4 +44,7 @@ export {
   getFilteredProducts,
   fetchFilteredProducts,
   ClearFormButton,
+  FilterByProduct,
+  FilterByPrice,
+  FilterByBrand,
 };

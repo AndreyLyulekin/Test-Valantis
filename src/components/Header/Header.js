@@ -1,17 +1,7 @@
-import {
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Select,
-  TextField,
-  Box,
-  Button,
-  Stack,
-} from "@mui/material";
-import TuneIcon from "@mui/icons-material/Tune";
+import { InputLabel, MenuItem, FormControl, Select, Box } from "@mui/material";
 import { useState } from "react";
 
-import { ClearFormButton } from "../index";
+import { FilterByProduct, FilterByPrice, FilterByBrand } from "../index";
 
 export default function BasicTextFields(props) {
   const {
@@ -68,103 +58,26 @@ export default function BasicTextFields(props) {
           </FormControl>
         </Box>
         {filterBy === "product" && (
-          <>
-            <Box
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 1, width: "40ch" },
-              }}
-              noValidate
-              autoComplete="off"
-              onSubmit={(e) => handleSubmit(e)}
-            >
-              <TextField
-                id="outlined-basic"
-                label="Search"
-                variant="outlined"
-                color="primary"
-                onChange={handleChange}
-              />
-            </Box>
-            <Stack direction="row" spacing={2}>
-              <Button
-                variant="contained"
-                endIcon={<TuneIcon />}
-                onClick={(e) => handleSubmit(e)}
-                size="large"
-              >
-                Filter
-              </Button>
-              <ClearFormButton
-                handleClearFilterCLick={handleClearFilterCLick}
-              />
-            </Stack>
-          </>
+          <FilterByProduct
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            handleClearFilterCLick={handleClearFilterCLick}
+          />
         )}
         {filterBy === "price" && (
-          <>
-            <Box
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 1, width: "40ch" },
-              }}
-              noValidate
-              autoComplete="off"
-              onSubmit={(e) => handleSubmit(e)}
-            >
-              <TextField
-                id="outlined-basic"
-                label="Price"
-                variant="outlined"
-                color="primary"
-                onChange={handleChange}
-              />
-            </Box>
-            <Stack direction="row" spacing={2}>
-              <Button
-                variant="contained"
-                endIcon={<TuneIcon />}
-                onClick={(e) => handleSubmit(e)}
-                size="large"
-              >
-                Filter
-              </Button>
-              <ClearFormButton
-                handleClearFilterCLick={handleClearFilterCLick}
-              />
-            </Stack>
-          </>
+          <FilterByPrice
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            handleClearFilterCLick={handleClearFilterCLick}
+          />
         )}
         {filterBy === "brand" && (
-          <>
-            <Box sx={{ minWidth: "370px" }}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">
-                  Choose Brand
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={filterSearchInputValueAllState.filterSearchInputValue}
-                  label="Filtered by..."
-                  onChange={handleChangeChooseBrand}
-                >
-                  {allBrandsLists.map((brand, index) => {
-                    return (
-                      <MenuItem key={index} value={brand}>
-                        {brand}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-              </FormControl>
-            </Box>
-            <Stack direction="row" spacing={2}>
-              <ClearFormButton
-                handleClearFilterCLick={handleClearFilterCLick}
-              />
-            </Stack>
-          </>
+          <FilterByBrand
+            handleChangeChooseBrand={handleChangeChooseBrand}
+            allBrandsLists={allBrandsLists}
+            filterSearchInputValueAllState={filterSearchInputValueAllState}
+            handleClearFilterCLick={handleClearFilterCLick}
+          />
         )}
       </div>
     </header>

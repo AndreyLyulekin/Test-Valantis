@@ -7,6 +7,17 @@ import {
 } from "../components/index";
 import { createTheme } from "@mui/material/styles";
 
+export const errorHandler = (error) => {
+  if (error.response) {
+    console.log("Id Error:", error.response.data);
+    console.log("HTTP Error:", error.response.status);
+  } else {
+    console.log("Error:", error.message);
+  }
+
+  console.log("Retrying...");
+};
+
 export const darkTheme = createTheme({
   palette: {
     mode: "dark",

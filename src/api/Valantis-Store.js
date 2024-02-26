@@ -1,12 +1,19 @@
 import axios from "axios";
 import md5 from "blueimp-md5";
 import { API_URL, PASSWORD_API } from "../utils/consts";
+import { errorHandler } from "../utils/helpers";
 
 // Текущая дата
 const timestamp = new Date().toISOString().split("T")[0].replace(/-/g, "");
 
 // Формирование авторизационной строки
 const authString = md5(`${PASSWORD_API}_${timestamp}`);
+
+//повторяющиеся заголовки
+const headers = {
+  "Content-Type": "application/json",
+  "X-Auth": authString,
+};
 
 // Выполнение запроса к API
 export const getAllBrands = async () => {
@@ -24,12 +31,7 @@ export const getAllBrands = async () => {
           action: "get_fields",
           params: { field: "brand" },
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "X-Auth": authString,
-          },
-        },
+        { headers },
       );
 
       arr = response.data.result;
@@ -37,14 +39,7 @@ export const getAllBrands = async () => {
       //если успешно - прекращаем запросы
       retry = false;
     } catch (error) {
-      if (error.response) {
-        console.log("Id Error:", error.response.data);
-        console.log("HTTP Error:", error.response.status);
-      } else {
-        console.log("Error:", error.message);
-      }
-
-      console.log("Retrying...");
+      errorHandler(error);
 
       retryCount += 1;
 
@@ -68,26 +63,14 @@ export const getFields = async () => {
         {
           action: "get_fields",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "X-Auth": authString,
-          },
-        },
+        { headers },
       );
 
       arr = response.data.result;
 
       retry = false;
     } catch (error) {
-      if (error.response) {
-        console.log("Id Error:", error.response.data);
-        console.log("HTTP Error:", error.response.status);
-      } else {
-        console.log("Error:", error.message);
-      }
-
-      console.log("Retrying...");
+      errorHandler(error);
 
       retryCount += 1;
 
@@ -118,12 +101,7 @@ export const getFiftyIds = async (page, rowsPerPage) => {
           action: "get_ids",
           params: { offset, limit: rowsPerPage + extraRows },
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "X-Auth": authString,
-          },
-        },
+        { headers },
       );
 
       arr = response.data.result.filter(
@@ -132,14 +110,7 @@ export const getFiftyIds = async (page, rowsPerPage) => {
 
       retry = false;
     } catch (error) {
-      if (error.response) {
-        console.log("Id Error:", error.response.data);
-        console.log("HTTP Error:", error.response.status);
-      } else {
-        console.log("Error:", error.message);
-      }
-
-      console.log("Retrying...");
+      errorHandler(error);
 
       retryCount += 1;
 
@@ -173,12 +144,7 @@ export const getProducts = async (page, rowsPerPage, idsAfterFilter) => {
           action: "get_items",
           params: { ids: ids },
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "X-Auth": authString,
-          },
-        },
+        { headers },
       );
 
       //удаляем дубликаты карточек
@@ -188,14 +154,7 @@ export const getProducts = async (page, rowsPerPage, idsAfterFilter) => {
 
       retry = false;
     } catch (error) {
-      if (error.response) {
-        console.log("Id Error:", error.response.data);
-        console.log("HTTP Error:", error.response.status);
-      } else {
-        console.log("Error:", error.message);
-      }
-
-      console.log("Retrying...");
+      errorHandler(error);
 
       retryCount += 1;
 
@@ -222,26 +181,14 @@ export const getFilteredProducts = async (filteredBy, filterValue) => {
           action: "filter",
           params,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "X-Auth": authString,
-          },
-        },
+        { headers },
       );
 
       arr = response.data.result;
 
       retry = false;
     } catch (error) {
-      if (error.response) {
-        console.log("Id Error:", error.response.data);
-        console.log("HTTP Error:", error.response.status);
-      } else {
-        console.log("Error:", error.message);
-      }
-
-      console.log("Retrying...");
+      errorHandler(error);
 
       retryCount += 1;
 
