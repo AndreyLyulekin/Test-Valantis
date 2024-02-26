@@ -8,7 +8,7 @@ export default function Pagination({
   const totalCount =
     productsIdsAfterFilter.length > 0 ? productsIdsAfterFilter.length : -1;
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (newPage) => {
     pagesAllState.setCurrentPage(newPage);
   };
 
