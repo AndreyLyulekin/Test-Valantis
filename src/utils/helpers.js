@@ -6,12 +6,15 @@ import {
   getFilteredProducts,
 } from "../api/Valantis-Store";
 import { createTheme } from "@mui/material/styles";
+import axios from "axios";
+import md5 from "blueimp-md5";
+import { API_URL, PASSWORD_API } from "./consts";
 
 export const handleEventChange = (event, setter) => {
   setter(event.target.value);
 };
 
-export const errorHandler = (error) => {
+export const handleError = (error) => {
   if (error.response) {
     console.log("Id Error:", error.response.data);
     console.log("HTTP Error:", error.response.status);
@@ -63,4 +66,32 @@ export const fetchFilteredProducts = async (
 ) => {
   const response = await getFilteredProducts(filteredBy, filterValue);
   setter(response);
+};
+
+export const generateAuthString = (password) => {
+  const timestamp = new Date().toISOString().split("T")[0].replace(/-/g, "");
+  return md5(`${password}_${timestamp}`);
+};
+
+export const executeRequest = async (params) => {
+  const headers = {
+    "Content-Type": "application/json",
+    "X-Auth": generateAuthString(PASSWORD_API),
+  };
+
+  let retryCount = 0;
+  let result;
+
+  while (retryCount < 3) {
+    try {
+      result = await axios.post(API_URL, params, { headers });
+      break;
+    } catch (error) {
+      handleError(error);
+      retryCount += 1;
+      await new Promise((resolve) => setTimeout(resolve, 200));
+    }
+  }
+
+  return result?.data?.result || [];
 };
