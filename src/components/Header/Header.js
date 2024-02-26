@@ -43,9 +43,9 @@ export default function BasicTextFields({
   };
 
   return (
-    <header className="flex flex-row w-full items-center justify-between h-[100px]">
+    <header className="flex pt-4 lg:pt-0 gap-y-3 lg:gap-0 flex-col lg:flex-row w-full items-center justify-between lg:h-[100px]">
       <h2 className="font-bold text-2xl select-none">LoGo</h2>
-      <div className="flex items-center gap-x-5">
+      <div className="flex  gap-y-3 lg:gap-0 flex-col lg:flex-row items-center gap-x-5">
         <Box sx={{ minWidth: 160 }}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">

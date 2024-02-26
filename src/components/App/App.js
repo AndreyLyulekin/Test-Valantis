@@ -79,7 +79,7 @@ export default function App() {
   }, [currentPage, productsIdsAfterFilter, rowsPerPage]);
 
   return (
-    <div className="flex-col max-w[1440px] px-20 relative h-screen">
+    <div className="flex-col max-w[1440px] px-4 lg:px-20 relative h-screen">
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Header
