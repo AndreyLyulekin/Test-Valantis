@@ -15,6 +15,7 @@ export const getAllBrands = async () => {
   let retry = true;
   let retryCount = 0;
 
+  //повторяем запрос, максимум 3 раза, что-бы не Ddos'ить сервер
   while (retry && retryCount < 3) {
     try {
       const response = await axios.post(
@@ -33,6 +34,7 @@ export const getAllBrands = async () => {
 
       arr = response.data.result;
 
+      //если успешно - прекращаем запросы
       retry = false;
     } catch (error) {
       if (error.response) {
@@ -97,7 +99,10 @@ export const getFields = async () => {
 };
 
 export const getFiftyIds = async (page, rowsPerPage) => {
+  //определяем смещение запроса
   const offset = page === 0 ? 0 : page * 50;
+
+  //добавляем "экстра" строки для заполнения вывода, после очистки дубликатов
   const extraRows = rowsPerPage === 100 ? 0 : rowsPerPage / 5;
 
   let arr = [];
@@ -156,7 +161,7 @@ export const getProducts = async (page, rowsPerPage, idsAfterFilter) => {
     const endIndex = startIndex + rowsPerPage;
     ids = idsAfterFilter.slice(startIndex, endIndex);
   }
-  //для повторения запроса и счетчик для ограничения кол-ва запросов
+
   let retry = true;
   let retryCount = 0;
 

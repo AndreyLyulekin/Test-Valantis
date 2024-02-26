@@ -39,7 +39,8 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (filterBy === "" || filterSearchInputValue === "") return;
+    if (!filterBy || !filterSearchInputValue) return;
+
     fetchFilteredProducts(
       setProductsIdsAfterFilter,
       filterBy,
