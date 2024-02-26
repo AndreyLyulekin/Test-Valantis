@@ -7,6 +7,10 @@ import {
 } from "../components/index";
 import { createTheme } from "@mui/material/styles";
 
+export const handleEventChange = (event, setter) => {
+  setter(event.target.value);
+};
+
 export const errorHandler = (error) => {
   if (error.response) {
     console.log("Id Error:", error.response.data);

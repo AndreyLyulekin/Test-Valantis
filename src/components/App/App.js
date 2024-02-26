@@ -10,6 +10,7 @@ import {
   fetchBrands,
   fetchFilteredProducts,
   darkTheme,
+  handleEventChange,
 } from "../index";
 
 export default function App() {
@@ -23,14 +24,6 @@ export default function App() {
   const [filterBy, setFilterBy] = useState("");
   const [filterSearchInputValue, setFilterSearchInputValue] = useState("");
   const [productsIdsAfterFilter, setProductsIdsAfterFilter] = useState([]);
-
-  const filterChange = (event) => {
-    setFilterBy(event.target.value);
-  };
-
-  const handleChangeChooseBrand = (event) => {
-    setFilterSearchInputValue(event.target.value);
-  };
 
   const handleClearFilterCLick = () => {
     setFilterSearchInputValue("");
@@ -79,14 +72,13 @@ export default function App() {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Header
-          filterBy={filterBy}
+          filterByAllState={{ filterBy, setFilterBy }}
           allBrandsLists={allBrandsLists}
           filterSearchInputValueAllState={{
             filterSearchInputValue,
             setFilterSearchInputValue,
           }}
-          filterChange={filterChange}
-          handleChangeChooseBrand={handleChangeChooseBrand}
+          handleEventChange={handleEventChange}
           handleClearFilterCLick={handleClearFilterCLick}
         />
         {isLoading ? (

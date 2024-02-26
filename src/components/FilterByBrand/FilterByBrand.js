@@ -11,7 +11,7 @@ import { ClearFormButton } from "../index";
 
 export default function FilterByBrand(props) {
   const {
-    handleChangeChooseBrand,
+    handleEventChange,
     allBrandsLists,
     filterSearchInputValueAllState,
     handleClearFilterCLick,
@@ -27,7 +27,12 @@ export default function FilterByBrand(props) {
             id="demo-simple-select"
             value={filterSearchInputValueAllState.filterSearchInputValue}
             label="Filtered by..."
-            onChange={handleChangeChooseBrand}
+            onChange={(e) =>
+              handleEventChange(
+                e,
+                filterSearchInputValueAllState.setFilterSearchInputValue,
+              )
+            }
           >
             {allBrandsLists.map((brand, index) => {
               return (

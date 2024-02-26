@@ -6,9 +6,8 @@ import { FilterByProduct, FilterByPrice, FilterByBrand } from "../index";
 export default function BasicTextFields(props) {
   const {
     allBrandsLists,
-    filterBy,
-    filterChange,
-    handleChangeChooseBrand,
+    filterByAllState,
+    handleEventChange,
     handleClearFilterCLick,
     filterSearchInputValueAllState,
   } = props;
@@ -47,9 +46,11 @@ export default function BasicTextFields(props) {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={filterBy}
+              value={filterByAllState.filterBy}
               label="Filtered by..."
-              onChange={filterChange}
+              onChange={(e) =>
+                handleEventChange(e, filterByAllState.setFilterBy)
+              }
             >
               <MenuItem value={"product"}>Name</MenuItem>
               <MenuItem value={"price"}>Price</MenuItem>
@@ -57,23 +58,23 @@ export default function BasicTextFields(props) {
             </Select>
           </FormControl>
         </Box>
-        {filterBy === "product" && (
+        {filterByAllState.filterBy === "product" && (
           <FilterByProduct
             handleChange={handleChange}
             handleSubmit={handleSubmit}
             handleClearFilterCLick={handleClearFilterCLick}
           />
         )}
-        {filterBy === "price" && (
+        {filterByAllState.filterBy === "price" && (
           <FilterByPrice
             handleChange={handleChange}
             handleSubmit={handleSubmit}
             handleClearFilterCLick={handleClearFilterCLick}
           />
         )}
-        {filterBy === "brand" && (
+        {filterByAllState.filterBy === "brand" && (
           <FilterByBrand
-            handleChangeChooseBrand={handleChangeChooseBrand}
+            handleEventChange={handleEventChange}
             allBrandsLists={allBrandsLists}
             filterSearchInputValueAllState={filterSearchInputValueAllState}
             handleClearFilterCLick={handleClearFilterCLick}

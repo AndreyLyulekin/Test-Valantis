@@ -8,6 +8,7 @@ import ClearFormButton from "./ClearFormButton/ClearFormButton";
 import FilterByProduct from "./FilterByProduct/FilterByProduct";
 import FilterByPrice from "./FilterByPrice/FilterByPrice";
 import FilterByBrand from "./FilterByBrand/FilterByBrand";
+import TableItem from "./TableItem/TableItem";
 import {
   getFiftyIds,
   getFields,
@@ -22,6 +23,7 @@ import {
   fetchBrands,
   fetchFilteredProducts,
   darkTheme,
+  handleEventChange,
 } from "../utils/helpers";
 
 export {
@@ -47,4 +49,6 @@ export {
   FilterByProduct,
   FilterByPrice,
   FilterByBrand,
+  TableItem,
+  handleEventChange,
 };
