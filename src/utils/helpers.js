@@ -1,10 +1,10 @@
 import {
-  getAllBrands,
   getFiftyIds,
   getFields,
   getProducts,
+  getAllBrands,
   getFilteredProducts,
-} from "../components/index";
+} from "../api/Valantis-Store";
 import { createTheme } from "@mui/material/styles";
 
 export const handleEventChange = (event, setter) => {

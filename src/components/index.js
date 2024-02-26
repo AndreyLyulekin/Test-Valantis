@@ -2,29 +2,13 @@ import App from "./App/App";
 import Main from "./Main/Main";
 import Header from "./Header/Header";
 import Loader from "./Loader/Loader";
-import { API_URL, PASSWORD_API } from "../utils/consts";
 import Pagination from "./Pagination/Pagination";
 import ClearFormButton from "./ClearFormButton/ClearFormButton";
 import FilterByProduct from "./FilterByProduct/FilterByProduct";
 import FilterByPrice from "./FilterByPrice/FilterByPrice";
 import FilterByBrand from "./FilterByBrand/FilterByBrand";
 import TableItem from "./TableItem/TableItem";
-import {
-  getFiftyIds,
-  getFields,
-  getProducts,
-  getAllBrands,
-  getFilteredProducts,
-} from "../api/Valantis-Store";
-import {
-  fetchIds,
-  fetchProducts,
-  fetchTableColumns,
-  fetchBrands,
-  fetchFilteredProducts,
-  darkTheme,
-  handleEventChange,
-} from "../utils/helpers";
+import TableColumns from "./TableColumns/TableColumns";
 
 export {
   App,
@@ -32,23 +16,10 @@ export {
   Header,
   Pagination,
   Loader,
-  API_URL,
-  PASSWORD_API,
-  getFiftyIds,
-  getFields,
-  getProducts,
-  darkTheme,
-  fetchIds,
-  fetchProducts,
-  fetchTableColumns,
-  getAllBrands,
-  fetchBrands,
-  getFilteredProducts,
-  fetchFilteredProducts,
   ClearFormButton,
   FilterByProduct,
   FilterByPrice,
   FilterByBrand,
   TableItem,
-  handleEventChange,
+  TableColumns,
 };

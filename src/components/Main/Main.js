@@ -1,4 +1,4 @@
-import { Pagination, TableItem } from "../index";
+import { Pagination, TableItem, TableColumns } from "../index";
 
 export default function Main(props) {
   const {
@@ -16,16 +16,7 @@ export default function Main(props) {
         pagesAllState={pagesAllState}
         rowsAllState={rowsAllState}
       />
-      <div className="flex w-full py-[30px]">
-        <p className="text-white w-1/4 text-center">Id</p>
-        {tableColumnsNames.map((item, index) => {
-          return (
-            <p key={index} className="text-white w-1/4 text-center">
-              {item}
-            </p>
-          );
-        })}
-      </div>
+      <TableColumns tableColumnsNames={tableColumnsNames} />
       <ul className="flex flex-col w-full gap-y-[10px] pb-[30px]">
         {products.map((item) => {
           return <TableItem key={item.id} item={item} />;

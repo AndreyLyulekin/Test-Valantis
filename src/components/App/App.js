@@ -1,17 +1,16 @@
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useState, useEffect } from "react";
+import { Header, Main, Loader } from "../index";
+
 import {
-  Header,
-  Main,
   fetchProducts,
   fetchTableColumns,
-  Loader,
   fetchBrands,
   fetchFilteredProducts,
   darkTheme,
   handleEventChange,
-} from "../index";
+} from "../../utils/helpers";
 
 export default function App() {
   const [allBrandsLists, setAllBrandsLists] = useState([]);
