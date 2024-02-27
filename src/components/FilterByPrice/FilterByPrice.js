@@ -1,9 +1,10 @@
 import { TextField, Box, Button, Stack } from "@mui/material";
 import TuneIcon from "@mui/icons-material/Tune";
 import { ClearFormButton } from "../index";
+import { handleEventChange } from "../../utils/helpers";
 
 export default function FilterByPrice({
-  handleChange,
+  setTextField,
   handleSubmit,
   handleClearFilterCLick,
 }) {
@@ -23,7 +24,7 @@ export default function FilterByPrice({
           label="Price"
           variant="outlined"
           color="primary"
-          onChange={handleChange}
+          onChange={(e) => handleEventChange(e, setTextField)}
         />
       </Box>
       <Stack direction="row" spacing={2}>

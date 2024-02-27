@@ -9,7 +9,6 @@ import {
   fetchBrands,
   fetchFilteredProducts,
   darkTheme,
-  handleEventChange,
 } from "../../utils/helpers";
 
 export default function App() {
@@ -32,7 +31,6 @@ export default function App() {
 
   useEffect(() => {
     if (!filterBy || !filterSearchInputValue) return;
-
     fetchFilteredProducts(
       setProductsIdsAfterFilter,
       filterBy,
@@ -77,7 +75,6 @@ export default function App() {
             filterSearchInputValue,
             setFilterSearchInputValue,
           }}
-          handleEventChange={handleEventChange}
           handleClearFilterCLick={handleClearFilterCLick}
         />
         {isLoading ? (

@@ -2,19 +2,20 @@ import { InputLabel, MenuItem, FormControl, Select, Box } from "@mui/material";
 import { useState } from "react";
 
 import { FilterByProduct, FilterByPrice, FilterByBrand } from "../index";
+import { handleEventChange } from "../../utils/helpers";
 
-export default function BasicTextFields(props) {
+export default function Header(props) {
   const {
     allBrandsLists,
     filterByAllState,
-    handleEventChange,
     handleClearFilterCLick,
     filterSearchInputValueAllState,
   } = props;
   const [textField, setTextField] = useState("");
 
-  const handleChange = (e) => {
-    setTextField(e.target.value);
+  const handleFilterChange = (e) => {
+    filterSearchInputValueAllState.setFilterSearchInputValue("");
+    handleEventChange(e, filterByAllState.setFilterBy);
   };
 
   const handleSubmit = (e) => {
@@ -48,9 +49,7 @@ export default function BasicTextFields(props) {
               id="demo-simple-select"
               value={filterByAllState.filterBy}
               label="Filtered by..."
-              onChange={(e) =>
-                handleEventChange(e, filterByAllState.setFilterBy)
-              }
+              onChange={(e) => handleFilterChange(e)}
             >
               <MenuItem value={"product"}>Name</MenuItem>
               <MenuItem value={"price"}>Price</MenuItem>
@@ -60,14 +59,14 @@ export default function BasicTextFields(props) {
         </Box>
         {filterByAllState.filterBy === "product" && (
           <FilterByProduct
-            handleChange={handleChange}
+            setTextField={setTextField}
             handleSubmit={handleSubmit}
             handleClearFilterCLick={handleClearFilterCLick}
           />
         )}
         {filterByAllState.filterBy === "price" && (
           <FilterByPrice
-            handleChange={handleChange}
+            setTextField={setTextField}
             handleSubmit={handleSubmit}
             handleClearFilterCLick={handleClearFilterCLick}
           />
